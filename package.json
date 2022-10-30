@@ -1,14 +1,14 @@
 {
-  "name": "blockledger",
+  "name": "ethledger",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "hardhat": "hardhat",
-    "hardhat:compile":"hardhat compile",
-    "hardhat:deploy":"hardhat run scripts/deploy.js",
-    "hardhat:test":"hardhat test",
-    "chainlink-node":"cd .chainlink && bash docker.sh",
+    "hardhat:compile": "hardhat compile",
+    "hardhat:deploy": "hardhat run scripts/deploy.js",
+    "hardhat:test": "hardhat test",
+    "chainlink-node": "cd .chainlink && bash docker.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,6 +23,7 @@
   "homepage": "https://github.com/shivamangina/Chainlink-hackathon-fall-22-BE#readme",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "eslint": "^8.26.0",
     "hardhat": "^2.12.1"
   }
 }
