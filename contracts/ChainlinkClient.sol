@@ -21,8 +21,8 @@ contract ConsumerContract is ChainlinkClient, ConfirmedOwner {
     );
 
     /**
-     *  
-     *@dev LINK address in polygon mumbai network: 
+     *
+     *@dev LINK address in polygon mumbai network:
      * @dev Check https://docs.chain.link/docs/link-token-contracts/ for LINK address for the right network
      */
     constructor() ConfirmedOwner(msg.sender) {
@@ -33,7 +33,6 @@ contract ConsumerContract is ChainlinkClient, ConfirmedOwner {
         address _oracle,
         string memory _jobId,
         string memory _payOutId
-    
     ) public onlyOwner {
         Chainlink.Request memory req = buildOperatorRequest(
             stringToBytes32(_jobId),
@@ -41,16 +40,26 @@ contract ConsumerContract is ChainlinkClient, ConfirmedOwner {
         );
 
         req.add("payout_id", _payOutId);
-        
+
         sendOperatorRequestTo(_oracle, req, ORACLE_PAYMENT);
     }
 
-    function fulfillRequestInfo(bytes32 _requestId, string memory _info)
-        public
-        recordChainlinkFulfillment(_requestId)
-    {
-        emit RequestForInfoFulfilled(_requestId, _info);
-        lastRetrievedInfo = _info;
+    function fulfillRequestInfo(
+        bytes32 _requestId,
+        string memory _id,
+        string memory _paymentMethod,
+        string memory _to,
+        string memory _from,
+        uint256 _amount,
+        string memory _transactionId,
+        string memory _currency,
+        uint256 _paymentTime,
+        string memory _accountId,
+        string memory _eventName,
+        string memory _organisationId
+    ) public recordChainlinkFulfillment(_requestId) {
+        emit RequestForInfoFulfilled(_requestId, _id);
+        lastRetrievedInfo = _id;
     }
 
     /*
