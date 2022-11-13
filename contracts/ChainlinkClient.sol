@@ -12,7 +12,7 @@ import "@chainlink/contracts/src/v0.8/ConfirmedOwner.sol";
 contract ConsumerContract is ChainlinkClient, ConfirmedOwner {
     using Chainlink for Chainlink.Request;
 
-    uint256 private constant ORACLE_PAYMENT = 1 * LINK_DIVISIBILITY; // 1 * 10**18
+    uint256 private constant ORACLE_PAYMENT = 1 * 10**18; // 1 * 10**18
     string public lastRetrievedInfo;
 
     event RequestForInfoFulfilled(
@@ -26,7 +26,7 @@ contract ConsumerContract is ChainlinkClient, ConfirmedOwner {
      * @dev Check https://docs.chain.link/docs/link-token-contracts/ for LINK address for the right network
      */
     constructor() ConfirmedOwner(msg.sender) {
-        setChainlinkToken("LINK ADDRESS HERE");
+        setChainlinkToken(0x326C977E6efc84E512bB9C30f76E30c160eD06FB);
     }
 
     function requestInfo(
@@ -46,20 +46,22 @@ contract ConsumerContract is ChainlinkClient, ConfirmedOwner {
 
     function fulfillRequestInfo(
         bytes32 _requestId,
-        string memory _id,
-        string memory _paymentMethod,
-        string memory _to,
-        string memory _from,
-        uint256 _amount,
-        string memory _transactionId,
-        string memory _currency,
-        uint256 _paymentTime,
-        string memory _accountId,
-        string memory _eventName,
-        string memory _organisationId
-    ) public recordChainlinkFulfillment(_requestId) {
-        emit RequestForInfoFulfilled(_requestId, _id);
-        lastRetrievedInfo = _id;
+        // string memory _paymentMethod,
+        string memory _to
+    )
+        public
+        // string memory _from,
+        // uint256 _amount,
+        // string memory _transactionId,
+        // string memory _currency,
+        // uint256 _paymentTime,
+        // string memory _accountId,
+        // string memory _eventName,
+        // string memory _organisationId
+        recordChainlinkFulfillment(_requestId)
+    {
+        emit RequestForInfoFulfilled(_requestId, _to);
+        lastRetrievedInfo = _to;
     }
 
     /*
