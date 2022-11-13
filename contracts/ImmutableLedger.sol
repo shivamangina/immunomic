@@ -4,10 +4,8 @@ pragma solidity 0.8.13;
 import "./Owner.sol";
 import "./CounterChainlink.sol";
 
-contract EthLedger {
-    // ?????
-
-    //
+contract ImmutableLedger {
+    
     struct Transaction {
         string id;
         string paymentMethod;
