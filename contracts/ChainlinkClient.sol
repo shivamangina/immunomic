@@ -12,7 +12,7 @@ import "@chainlink/contracts/src/v0.8/ConfirmedOwner.sol";
 contract ConsumerContract is ChainlinkClient, ConfirmedOwner {
     using Chainlink for Chainlink.Request;
 
-    uint256 private constant ORACLE_PAYMENT = 1 * 10**18; // 1 * 10**18
+    uint256 private constant ORACLE_PAYMENT = 1 * 10**17;
     string public lastRetrievedInfo;
 
     event RequestForInfoFulfilled(
@@ -29,35 +29,21 @@ contract ConsumerContract is ChainlinkClient, ConfirmedOwner {
         setChainlinkToken(0x326C977E6efc84E512bB9C30f76E30c160eD06FB);
     }
 
-    function requestInfo(
-        address _oracle,
-        string memory _jobId,
-        string memory _payOutId
-    ) public onlyOwner {
-        Chainlink.Request memory req = buildOperatorRequest(
+    function requestInfo(address _oracle, string memory _jobId)
+        public
+        onlyOwner
+    {
+        Chainlink.Request memory req = buildChainlinkRequest(
             stringToBytes32(_jobId),
+            address(this),
             this.fulfillRequestInfo.selector
         );
-
-        req.add("payout_id", _payOutId);
-
-        sendOperatorRequestTo(_oracle, req, ORACLE_PAYMENT);
+        req.add("payout_id", "P3GJR5VFXJSUL");
+        sendChainlinkRequestTo(_oracle, req, ORACLE_PAYMENT);
     }
 
-    function fulfillRequestInfo(
-        bytes32 _requestId,
-        // string memory _paymentMethod,
-        string memory _to
-    )
+    function fulfillRequestInfo(bytes32 _requestId, string memory _to)
         public
-        // string memory _from,
-        // uint256 _amount,
-        // string memory _transactionId,
-        // string memory _currency,
-        // uint256 _paymentTime,
-        // string memory _accountId,
-        // string memory _eventName,
-        // string memory _organisationId
         recordChainlinkFulfillment(_requestId)
     {
         emit RequestForInfoFulfilled(_requestId, _to);
@@ -89,12 +75,8 @@ contract ConsumerContract is ChainlinkClient, ConfirmedOwner {
         LinkTokenInterface link = LinkTokenInterface(chainlinkTokenAddress());
         require(
             link.transfer(msg.sender, link.balanceOf(address(this))),
-            "Unable to transfer Link"
+            "Unable to transfer"
         );
-    }
-
-    function withdrawBalance() public onlyOwner {
-        payable(msg.sender).transfer(address(this).balance);
     }
 
     function cancelRequest(
