@@ -98,6 +98,7 @@ export const createRequest = async (input) => {
           .then((response) => {
             response.data.result =
               response.data.batch_header.payout_batch_id || "";
+            console.log(response, "response");
             return resolve(response);
           })
           .catch(reject);
