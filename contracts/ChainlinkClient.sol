@@ -29,18 +29,17 @@ contract ConsumerContract is ChainlinkClient, ConfirmedOwner {
         setChainlinkToken(0x326C977E6efc84E512bB9C30f76E30c160eD06FB);
     }
 
-    function requestInfo(
-        address _oracle,
-        string memory _jobId,
-       
-    ) public onlyOwner {
+    function requestInfo(address _oracle, string memory _jobId)
+        public
+        onlyOwner
+    {
         Chainlink.Request memory req = buildOperatorRequest(
             stringToBytes32(_jobId),
             this.fulfillRequestInfo.selector
         );
 
-       req.add("payout_id", "P3GJR5VFXJSUL");
-       
+        req.add("payout_id", "P3GJR5VFXJSUL");
+
         sendOperatorRequestTo(_oracle, req, ORACLE_PAYMENT);
     }
 

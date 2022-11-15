@@ -1,4 +1,4 @@
-import getPayout from "./paypal";
+import { getPayout } from "./paypal.js";
 
 export const createRequest = async (req, res) => {
   const eaInputData = req.body;
