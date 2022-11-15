@@ -14,7 +14,20 @@ export const createRequest = async (req, res) => {
     const apiResponse = await getPayout(eaInputData.data);
     console.log("apiResponse: ", apiResponse);
 
-    eaResponse.data = { result: apiResponse.data.batch_header.time_completed };
+    eaResponse.data = {
+      paymentMethod:
+        apiResponse.data.items[0].payout_item.recipient_wallet || "PAYPAL",
+      to: apiResponse.data.items[0].payout_item.receiver || "Reciever",
+      from: apiResponse.data.items[0].payout_item.receiver || "Sender",
+      amount: apiResponse.data.batch_header.amount.value || "100",
+      transactionId: apiResponse.data.items[0].transaction_id || "80ADJ9390K",
+      currency: apiResponse.data.batch_header.amount.currency || "USD",
+      paymentTime:
+        apiResponse.data.batch_header.time_completed || "2022-11-12T17:02:38Z",
+      accountId: apiResponse.data.items[0].activity_id || "P3GJR5VFXJSUL",
+      eventName: "Campaign 1",
+      organisationId: "Organisation 1",
+    };
     eaResponse.statusCode = apiResponse.statusCode;
 
     res.json(eaResponse);
