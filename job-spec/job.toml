@@ -1,8 +1,8 @@
 type = "directrequest"
 schemaVersion = 1
-name = "paypal-job-eight"
+name = "paypal-job"
 maxTaskDuration = "0s"
-contractAddress = "0x9197816dB68E67620ACb88716C2a4B81f37552Df"
+contractAddress = "0x294e6eC95F11aF23773F10D1E636e0517518101b"
 minContractPaymentLinkJuels = "0"
 observationSource = """
     decode_log   [type=ethabidecodelog
@@ -26,7 +26,7 @@ observationSource = """
     encode_tx    [type=ethabiencode
                   abi="fulfillOracleRequest2(bytes32 requestId, uint256 payment, address callbackAddress, bytes4 callbackFunctionId, uint256 expiration, bytes calldata data)"
                   data="{\\"requestId\\": $(decode_log.requestId), \\"payment\\": $(decode_log.payment), \\"callbackAddress\\": $(decode_log.callbackAddr), \\"callbackFunctionId\\": $(decode_log.callbackFunctionId), \\"expiration\\": $(decode_log.cancelExpiration), \\"data\\": $(encode_data)}"]
-    submit_tx    [type=ethtx to="0x9197816dB68E67620ACb88716C2a4B81f37552Df" data="$(encode_tx)"]
+    submit_tx    [type=ethtx to="0x294e6eC95F11aF23773F10D1E636e0517518101b" data="$(encode_tx)"]
 
     decode_log -> decode_cbor -> fetch -> parsePaymentMethod -> parseTo -> parseFrom -> parseAmount -> parseTransactionId -> parseCurrency -> parsePaymentTime -> parseAccountId -> parseEventName -> parseOrganisationId -> encode_data -> encode_tx -> submit_tx
 """

@@ -4,8 +4,7 @@ pragma solidity 0.8.13;
 import "./Owner.sol";
 import "./CounterChainlink.sol";
 
-contract ImmutableLedger {
-    
+contract ImmutableLedger is Owner {
     struct Transaction {
         string id;
         string paymentMethod;
@@ -31,6 +30,21 @@ contract ImmutableLedger {
     Transaction[] private transactions;
 
     mapping(string => Organisation) public organisations;
+
+    event TransactionAdded(
+        bytes32 indexed requestId,
+        string indexed _id,
+        string indexed _paymentMethod,
+        string indexed _to,
+        string indexed _from,
+        uint256 _amount,
+        string indexed _transactionId,
+        string indexed _currency,
+        uint256 _paymentTime,
+        string indexed _accountId,
+        string indexed _eventName,
+        string indexed _organisationId
+    );
 
     function addTransaction(
         string memory _id,
@@ -59,6 +73,20 @@ contract ImmutableLedger {
                 _eventName,
                 _organisationId
             )
+        );
+
+        emit TransactionAdded(
+            _id,
+            _paymentMethod,
+            _to,
+            _from,
+            _amount,
+            _transactionId,
+            _currency,
+            _paymentTime,
+            _accountId,
+            _eventName,
+            _organisationId
         );
     }
 
@@ -97,18 +125,4 @@ contract ImmutableLedger {
         organisations[_id].isActive = false;
         return true; // emit the event
     }
-
-    // // chain link keepers
-    // function checkUpkeep(bytes calldata /* checkData */) external view override returns (bool upkeepNeeded, bytes memory /* performData */) {
-    //     upkeepNeeded = (block.timestamp - lastTimeStamp) > interval;
-    //     // We don't use the checkData in this example. The checkData is defined when the Upkeep was registered.
-    // }
-
-    // function performUpkeep(bytes calldata /* performData */) external override {
-    //     //We highly recommend revalidating the upkeep in the performUpkeep function
-    //     if ((block.timestamp - lastTimeStamp) > interval ) {
-    //         lastTimeStamp = block.timestamp;
-    //         counter = counter + 1;
-    //     }
-    // }
 }
