@@ -1,10 +1,9 @@
 type = "directrequest"
 schemaVersion = 1
-name = "paypal-job-three"
-externalJobID = "4b410804-893a-42a3-a13e-4f16b856ca57"
+name = "paypal-job-six"
 forwardingAllowed = false
 maxTaskDuration = "0s"
-contractAddress = "0x9Fc04e43fF6B25C0cB3A2dc2Ad7d50D48553372F"
+contractAddress = "0x2f8b248b69208647865B47f35B7784B348c6bbd0"
 minContractPaymentLinkJuels = "0"
 observationSource = """
     decode_log   [type=ethabidecodelog
@@ -15,11 +14,11 @@ observationSource = """
     decode_cbor  [type=cborparse data="$(decode_log.data)"]
     fetch        [type=bridge name="paypal-bridge-one" requestData="{\\"id\\": $(jobSpec.externalJobID), \\"data\\": { \\"payout_id\\": $(decode_cbor.payout_id)}}"]
     parse        [type=jsonparse path="data,result" data="$(fetch)"]
-    encode_data  [type=ethabiencode abi="(bytes32 requestId,string to)" data="{\\"requestId\\": $(decode_log.requestId),\\"to\\": $(parse.to)}"]
+    encode_data  [type=ethabiencode abi="(bytes32 requestId,string to)" data="{\\"requestId\\": $(decode_log.requestId),\\"to\\": $(parse)}"]
     encode_tx    [type=ethabiencode
                   abi="fulfillOracleRequest2(bytes32 requestId, uint256 payment, address callbackAddress, bytes4 callbackFunctionId, uint256 expiration, bytes calldata data)"
                   data="{\\"requestId\\": $(decode_log.requestId), \\"payment\\": $(decode_log.payment), \\"callbackAddress\\": $(decode_log.callbackAddr), \\"callbackFunctionId\\": $(decode_log.callbackFunctionId), \\"expiration\\": $(decode_log.cancelExpiration), \\"data\\": $(encode_data)}"]
-    submit_tx    [type=ethtx to="0x9Fc04e43fF6B25C0cB3A2dc2Ad7d50D48553372F" data="$(encode_tx)"]
+    submit_tx    [type=ethtx to="0x2f8b248b69208647865B47f35B7784B348c6bbd0" data="$(encode_tx)"]
 
     decode_log -> decode_cbor -> fetch -> parse -> encode_data -> encode_tx -> submit_tx
 """
