@@ -12,7 +12,7 @@ import "@chainlink/contracts/src/v0.8/ConfirmedOwner.sol";
 contract ConsumerContract is ChainlinkClient, ConfirmedOwner {
     using Chainlink for Chainlink.Request;
 
-    uint256 private constant ORACLE_PAYMENT = 1 * 10**17;
+    uint256 private constant ORACLE_PAYMENT = 1 * LINK_DIVISIBILITY; // 1 * 10**18
     string public lastRetrievedInfo;
 
     event RequestForInfoFulfilled(
@@ -21,33 +21,35 @@ contract ConsumerContract is ChainlinkClient, ConfirmedOwner {
     );
 
     /**
-     *
-     *@dev LINK address in polygon mumbai network:
+     *  polygon mumbai
+     *@dev LINK address in polygon mumbai network: 0x326C977E6efc84E512bB9C30f76E30c160eD06FB
      * @dev Check https://docs.chain.link/docs/link-token-contracts/ for LINK address for the right network
      */
     constructor() ConfirmedOwner(msg.sender) {
         setChainlinkToken(0x326C977E6efc84E512bB9C30f76E30c160eD06FB);
     }
 
-    function requestInfo(address _oracle, string memory _jobId)
-        public
-        onlyOwner
-    {
-        Chainlink.Request memory req = buildChainlinkRequest(
+    function requestInfo(
+        address _oracle,
+        string memory _jobId,
+       
+    ) public onlyOwner {
+        Chainlink.Request memory req = buildOperatorRequest(
             stringToBytes32(_jobId),
-            address(this),
             this.fulfillRequestInfo.selector
         );
-        req.add("payout_id", "P3GJR5VFXJSUL");
-        sendChainlinkRequestTo(_oracle, req, ORACLE_PAYMENT);
+
+       req.add("payout_id", "P3GJR5VFXJSUL");
+       
+        sendOperatorRequestTo(_oracle, req, ORACLE_PAYMENT);
     }
 
-    function fulfillRequestInfo(bytes32 _requestId, string memory _to)
+    function fulfillRequestInfo(bytes32 _requestId, string memory _info)
         public
         recordChainlinkFulfillment(_requestId)
     {
-        emit RequestForInfoFulfilled(_requestId, _to);
-        lastRetrievedInfo = _to;
+        emit RequestForInfoFulfilled(_requestId, _info);
+        lastRetrievedInfo = _info;
     }
 
     /*
@@ -75,8 +77,12 @@ contract ConsumerContract is ChainlinkClient, ConfirmedOwner {
         LinkTokenInterface link = LinkTokenInterface(chainlinkTokenAddress());
         require(
             link.transfer(msg.sender, link.balanceOf(address(this))),
-            "Unable to transfer"
+            "Unable to transfer Link"
         );
+    }
+
+    function withdrawBalance() public onlyOwner {
+        payable(msg.sender).transfer(address(this).balance);
     }
 
     function cancelRequest(

@@ -5,20 +5,24 @@ import express from "express";
 
 import bodyParser from "body-parser";
 
+const PORT = process.env.EA_PORT || 8080;
 const app = express();
-const port = process.env.EA_PORT || 8080;
 
 app.use(bodyParser.json());
 
-app.post("/", (req, res) => {
-  createRequest(req.body, (status, result) => {
-    res.status(status).json(result);
-  });
+app.use(bodyParser.json());
+
+app.get("/", function (req, res) {
+  res.send("Hello World! Server is running");
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}!`));
+app.post("/", createRequest);
+
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
 
 process.on("SIGINT", () => {
-  console.info("Interrupted. Cancelling");
-  exit(0);
+  console.info("\nShutting down server...");
+  process.exit(0);
 });
