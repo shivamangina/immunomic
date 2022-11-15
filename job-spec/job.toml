@@ -22,7 +22,8 @@ observationSource = """
     parseAccountId   [type="jsonparse" path="data,accountId" data="$(fetch)"]
     parseEventName   [type="jsonparse" path="data,eventName" data="$(fetch)"]
     parseOrganisationId   [type="jsonparse" path="data,organisationId" data="$(fetch)"]
-    encode_data  [type=ethabiencode abi="(bytes32 requestId,string info)" data="{\\"requestId\\": $(decode_log.requestId),\\"info\\": $(parse) }"]
+    encode_data  [type=ethabiencode abi="(bytes32 requestId,string paymentMethod,string to,string from,uint256 amount,string transactionId,string currency,uint256 paymentTime,string accountId,string eventName,string organisationId)" 
+    data="{\\"requestId\\": $(decode_log.requestId),\\"paymentMethod\\": $(parsePaymentMethod),\\"to\\": $(parseTo),\\"from\\": $(parseFrom),\\"amount\\": $(parseAmount),\\"transactionId\\": $(parseTransactionId),\\"currency\\": $(parseCurrency),\\"paymentTime\\": $(parsePaymentTime),\\"accountId\\": $(parseAccountId),\\"eventName\\": $(parseEventName),\\"organisationId\\": $(parseOrganisationId) }"]
     encode_tx    [type=ethabiencode
                   abi="fulfillOracleRequest2(bytes32 requestId, uint256 payment, address callbackAddress, bytes4 callbackFunctionId, uint256 expiration, bytes calldata data)"
                   data="{\\"requestId\\": $(decode_log.requestId), \\"payment\\": $(decode_log.payment), \\"callbackAddress\\": $(decode_log.callbackAddr), \\"callbackFunctionId\\": $(decode_log.callbackFunctionId), \\"expiration\\": $(decode_log.cancelExpiration), \\"data\\": $(encode_data)}"]

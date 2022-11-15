@@ -46,7 +46,6 @@ contract ConsumerContract is ChainlinkClient, ConfirmedOwner, ImmutableLedger {
 
     function fulfillRequestInfo(
         bytes32 _requestId,
-        string memory _id,
         string memory _paymentMethod,
         string memory _to,
         string memory _from,
@@ -61,7 +60,7 @@ contract ConsumerContract is ChainlinkClient, ConfirmedOwner, ImmutableLedger {
         emit RequestForInfoFulfilled(_requestId, _info);
 
         addTransaction(
-            _id,
+            block.timestamp,
             _paymentMethod,
             _to,
             _from,
