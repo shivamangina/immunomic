@@ -13,13 +13,13 @@ async function main() {
 
   const lockedAmount = hre.ethers.utils.parseEther("1");
 
-  const Lock = await hre.ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
+  const ImmutableLedger = await hre.ethers.getContractFactory("ImmutableLedger");
+  const immutableLedger = await ImmutableLedger.deploy(unlockTime, { value: lockedAmount });
 
-  await lock.deployed();
+  await immutableLedger.deployed();
 
   console.log(
-    `Lock with 1 ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`
+    `deployed to ${immutableLedger.address}`
   );
 }
 
