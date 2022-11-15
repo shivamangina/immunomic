@@ -3,17 +3,17 @@ pragma solidity ^0.8.7;
 
 import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
 import "@chainlink/contracts/src/v0.8/ConfirmedOwner.sol";
+import "./ImmutableLedger.sol";
 
 /**
- * THIS IS AN EXAMPLE CONTRACT THAT USES UN-AUDITED CODE.
+ * THIS IS AN CONTRACT THAT USES UN-AUDITED CODE.
  * DO NOT USE THIS CODE IN PRODUCTION.
  */
 
-contract ConsumerContract is ChainlinkClient, ConfirmedOwner {
+contract ConsumerContract is ChainlinkClient, ConfirmedOwner, ImmutableLedger {
     using Chainlink for Chainlink.Request;
 
     uint256 private constant ORACLE_PAYMENT = 1 * LINK_DIVISIBILITY; // 1 * 10**18
-    string public lastRetrievedInfo;
 
     event RequestForInfoFulfilled(
         bytes32 indexed requestId,
@@ -29,26 +29,50 @@ contract ConsumerContract is ChainlinkClient, ConfirmedOwner {
         setChainlinkToken(0x326C977E6efc84E512bB9C30f76E30c160eD06FB);
     }
 
-    function requestInfo(address _oracle, string memory _jobId)
-        public
-        onlyOwner
-    {
+    function requestInfo(
+        address _oracle,
+        string memory _jobId,
+        string _payoutId
+    ) public onlyOwner {
         Chainlink.Request memory req = buildOperatorRequest(
             stringToBytes32(_jobId),
             this.fulfillRequestInfo.selector
         );
 
-        req.add("payout_id", "P3GJR5VFXJSUL");
+        req.add("payout_id", _payoutId);
 
         sendOperatorRequestTo(_oracle, req, ORACLE_PAYMENT);
     }
 
-    function fulfillRequestInfo(bytes32 _requestId, string memory _info)
-        public
-        recordChainlinkFulfillment(_requestId)
-    {
+    function fulfillRequestInfo(
+        bytes32 _requestId,
+        string memory _id,
+        string memory _paymentMethod,
+        string memory _to,
+        string memory _from,
+        uint256 _amount,
+        string memory _transactionId,
+        string memory _currency,
+        uint256 _paymentTime,
+        string memory _accountId,
+        string memory _eventName,
+        string memory _organisationId
+    ) public recordChainlinkFulfillment(_requestId) {
         emit RequestForInfoFulfilled(_requestId, _info);
-        lastRetrievedInfo = _info;
+
+        addTransaction(
+            _id,
+            _paymentMethod,
+            _to,
+            _from,
+            _amount,
+            _transactionId,
+            _currency,
+            _paymentTime,
+            _accountId,
+            _eventName,
+            _organisationId
+        );
     }
 
     /*
