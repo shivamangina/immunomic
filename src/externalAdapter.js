@@ -1,6 +1,6 @@
-import { getPayout } from "./paypal.js";
+const getPayout = require("./paypal.js").getPayout;
 
-export const createRequest = async (req, res) => {
+const createRequest = async (req, res) => {
   const eaInputData = req.body;
   console.log(" Request data received: ", eaInputData);
 
@@ -42,3 +42,6 @@ export const createRequest = async (req, res) => {
   console.log("returned response:  ", eaResponse);
   return;
 };
+
+
+module.exports = { createRequest } 

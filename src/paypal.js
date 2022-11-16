@@ -1,6 +1,6 @@
-import paypal from "paypal-rest-sdk";
-import dotenv from "dotenv";
-import process from "process";
+const paypal =  require("paypal-rest-sdk");
+const dotenv =  require("dotenv");
+const process =  require("process");
 
 dotenv.config();
 
@@ -10,7 +10,7 @@ paypal.configure({
   client_secret: process.env.CLIENT_SECRET,
 });
 
-export const getPayout = async (data) => {
+ const getPayout = async (data) => {
   console.log("getPayout is running");
   return new Promise(async (resolve, reject) => {
     if (!("payout_id" in data))
@@ -43,3 +43,5 @@ export const getPayout = async (data) => {
     });
   });
 };
+
+module.exports = { getPayout } 

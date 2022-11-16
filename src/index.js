@@ -1,9 +1,7 @@
-import { createRequest } from "./externalAdapter.js";
-import process from "process";
-
-import express from "express";
-
-import bodyParser from "body-parser";
+const { createRequest } = require("./externalAdapter.js");
+const process = require("process");
+const express = require("express");
+const bodyParser = require("body-parser");
 
 const PORT = process.env.EA_PORT || 8080;
 const app = express();
