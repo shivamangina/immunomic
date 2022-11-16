@@ -12,7 +12,7 @@ contract ImmutableLedger is Owner {
         uint256 amount;
         string transactionId;
         string currency;
-        uint256 paymentTime; //
+        string paymentTime; //
         string accountId;
         string eventName;
         string organisationId;
@@ -38,7 +38,7 @@ contract ImmutableLedger is Owner {
         uint256 _amount,
         string _transactionId,
         string _currency,
-        uint256 _paymentTime,
+        string _paymentTime,
         string _accountId,
         string _eventName,
         string _organisationId
@@ -52,7 +52,7 @@ contract ImmutableLedger is Owner {
         uint256 _amount,
         string memory _transactionId,
         string memory _currency,
-        uint256 _paymentTime,
+        string _paymentTime,
         string memory _accountId,
         string memory _eventName,
         string memory _organisationId
