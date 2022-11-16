@@ -10,7 +10,7 @@ import "./ImmutableLedger.sol";
  * DO NOT USE THIS CODE IN PRODUCTION.
  */
 
-contract ConsumerContract is ChainlinkClient, ConfirmedOwner, ImmutableLedger {
+contract ChainlinkConsumer is ChainlinkClient, ConfirmedOwner, ImmutableLedger {
     using Chainlink for Chainlink.Request;
 
     uint256 private constant ORACLE_PAYMENT = 1 * LINK_DIVISIBILITY; // 1 * 10**18

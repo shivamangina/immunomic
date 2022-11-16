@@ -7,20 +7,14 @@
 const hre = require("hardhat");
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
-  const unlockTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
-
-  const lockedAmount = hre.ethers.utils.parseEther("1");
-
-  const ImmutableLedger = await hre.ethers.getContractFactory("ImmutableLedger");
-  const immutableLedger = await ImmutableLedger.deploy(unlockTime, { value: lockedAmount });
-
-  await immutableLedger.deployed();
-
-  console.log(
-    `deployed to ${immutableLedger.address}`
+  const ChainlinkConsumer = await hre.ethers.getContractFactory(
+    "ChainlinkConsumer"
   );
+  const chainlinkConsumer = await ChainlinkConsumer.deploy();
+
+  await chainlinkConsumer.deployed();
+
+  console.log(`deployed to ${chainlinkConsumer.address}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

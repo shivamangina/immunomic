@@ -7,7 +7,7 @@
   "scripts": {
     "hardhat": "hardhat",
     "hardhat:compile": "hardhat compile",
-    "hardhat:deploy": "hardhat run scripts/deploy.js",
+    "hardhat:deploy": "hardhat run scripts/deploy.js --network polygonmumbai",
     "hardhat:test": "hardhat test",
     "chainlink-node": "cd .chainlink && bash docker.sh",
     "dev": "nodemon src/index.js",
