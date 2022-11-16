@@ -5,6 +5,7 @@ import "./Owner.sol";
 
 contract ImmutableLedger is Owner {
     struct Transaction {
+        bytes32 requestId;
         string id;
         string paymentMethod;
         string to;
@@ -33,19 +34,20 @@ contract ImmutableLedger is Owner {
     event TransactionAdded(
         bytes32 indexed requestId,
         string indexed _id,
-        string indexed _paymentMethod,
-        string indexed _to,
+        string _paymentMethod,
+        string _to,
         string indexed _from,
         uint256 _amount,
-        string indexed _transactionId,
-        string indexed _currency,
+        string _transactionId,
+        string _currency,
         uint256 _paymentTime,
-        string indexed _accountId,
-        string indexed _eventName,
-        string indexed _organisationId
+        string _accountId,
+        string _eventName,
+        string _organisationId
     );
 
     function addTransaction(
+        bytes32  _requestId,
         string memory _id,
         string memory _paymentMethod,
         string memory _to,
@@ -60,6 +62,7 @@ contract ImmutableLedger is Owner {
     ) private {
         transactions.push(
             Transaction(
+                _requestId,
                 _id,
                 _paymentMethod,
                 _to,
@@ -75,6 +78,7 @@ contract ImmutableLedger is Owner {
         );
 
         emit TransactionAdded(
+            _requestId,
             _id,
             _paymentMethod,
             _to,
@@ -116,12 +120,12 @@ contract ImmutableLedger is Owner {
             _createdBy,
             _createdAt
         );
-        return true; // Emit the event
+        return true;
     }
 
     function disableOrganisation(string memory _id) public returns (bool) {
         require(organisations[_id].isActive == false, "Already inActive User");
         organisations[_id].isActive = false;
-        return true; // emit the event
+        return true;
     }
 }

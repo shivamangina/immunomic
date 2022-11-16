@@ -60,6 +60,7 @@ contract ConsumerContract is ChainlinkClient, ConfirmedOwner, ImmutableLedger {
         emit RequestForInfoFulfilled(_requestId, _info);
 
         addTransaction(
+            _requestId,
             block.timestamp,
             _paymentMethod,
             _to,
