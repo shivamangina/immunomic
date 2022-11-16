@@ -39,3 +39,14 @@ Hardhat commands
     npm run hardhat:deploy
     npm run hardhat:test
 ```
+
+
+username = shiva2nani.mangina@gmail.com
+pass = W6kBJRaoY.Voa_.@3pX*3mf
+nodepass = node_W6kBJRaoY.Voa_.@3pX*3mf
+
+# oracle
+0x294e6eC95F11aF23773F10D1E636e0517518101b
+
+# consumercontract
+0xdf38F1172BbA743Ca9EDfe7cCccb39d8B1c95712
