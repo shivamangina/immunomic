@@ -6,7 +6,6 @@ import "./Owner.sol";
 contract ImmutableLedger is Owner {
     struct Transaction {
         bytes32 requestId;
-        string id;
         string paymentMethod;
         string to;
         string from;
@@ -33,7 +32,6 @@ contract ImmutableLedger is Owner {
 
     event TransactionAdded(
         bytes32 indexed requestId,
-        string indexed _id,
         string _paymentMethod,
         string _to,
         string indexed _from,
@@ -47,8 +45,7 @@ contract ImmutableLedger is Owner {
     );
 
     function addTransaction(
-        bytes32  _requestId,
-        string memory _id,
+        bytes32 _requestId,
         string memory _paymentMethod,
         string memory _to,
         string memory _from,
@@ -59,11 +56,10 @@ contract ImmutableLedger is Owner {
         string memory _accountId,
         string memory _eventName,
         string memory _organisationId
-    ) private {
+    ) internal {
         transactions.push(
             Transaction(
                 _requestId,
-                _id,
                 _paymentMethod,
                 _to,
                 _from,
@@ -79,7 +75,6 @@ contract ImmutableLedger is Owner {
 
         emit TransactionAdded(
             _requestId,
-            _id,
             _paymentMethod,
             _to,
             _from,

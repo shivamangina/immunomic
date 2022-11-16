@@ -32,7 +32,7 @@ contract ConsumerContract is ChainlinkClient, ConfirmedOwner, ImmutableLedger {
     function requestInfo(
         address _oracle,
         string memory _jobId,
-        string _payoutId
+        string memory _payoutId
     ) public onlyOwner {
         Chainlink.Request memory req = buildOperatorRequest(
             stringToBytes32(_jobId),
@@ -57,11 +57,10 @@ contract ConsumerContract is ChainlinkClient, ConfirmedOwner, ImmutableLedger {
         string memory _eventName,
         string memory _organisationId
     ) public recordChainlinkFulfillment(_requestId) {
-        emit RequestForInfoFulfilled(_requestId, _info);
+        emit RequestForInfoFulfilled(_requestId, _transactionId);
 
         addTransaction(
             _requestId,
-            block.timestamp,
             _paymentMethod,
             _to,
             _from,
