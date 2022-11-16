@@ -1,4 +1,4 @@
-import { createRequest } from "./externalAdapder.js";
+import { createRequest } from "./externalAdapter.js";
 import process from "process";
 
 import express from "express";
