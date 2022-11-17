@@ -134,7 +134,7 @@ The software as a service (SAAS) we created will solve the issue of lack of tran
 <div style="display: flex; justify-content: space-between; align-items: center;">
    <p style="flex:1">Abdullah Zaman: </p>
    <div style="flex:4; justify-content: space-between;">
-      <a href="https://www.linkedin.com/in/satyasandeep" target="_blank">
+      <a href="https://www.linkedin.com/in/abdullah-zaman/" target="_blank">
       <img src=https://img.shields.io/badge/linkedin-%2300acee.svg?color=405DE6&style=for-the-badge&logo=linkedin&logoColor=white alt=linkedin style="margin-bottom: 5px;" />
       </a>
       <a href="https://twitter.com/satyasandeep76" target="_blank">
