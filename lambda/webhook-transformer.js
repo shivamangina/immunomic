@@ -3,6 +3,9 @@ exports.handler = async (event) => {
   const body = JSON.parse(event.body);
 
   const PAYOUT_ID = body.resource.batch_header.payout_batch_id;
+  const ORACLE_ADDRESS = "Oracle address here";
+  const JOB_ID = "Job Id here";
+  const SECRET_KEY = "secret key here";
 
   const contractAddress = "0xABCEC3684E4b606c1E66d80c6a3d70dAeFdbF215";
   const abi = [
@@ -30,16 +33,15 @@ exports.handler = async (event) => {
       type: "function",
     },
   ];
-  const provider = new ethers.providers.JsonRpcProvider(
-    "https://lingering-thrilling-mound.matic-testnet.discover.quiknode.pro/9a7ec6af6fc98446c232302ce0c9a68c66e9f819/"
-  );
-  const contract = new ethers.Contract(contractAddress, abi, provider);
+  const signer = new ethers.Wallet(SECRET_KEY, provider);
+  const contract = new ethers.Contract(contractAddress, abi, signer);
 
   const info = await contract.functions.requestInfo(
-    "ORACLE_ADDRESS",
-    "JOB_ID",
+    ORACLE_ADDRESS,
+    JOB_ID,
     PAYOUT_ID
   );
+
   console.log(JSON.stringify({ PAYOUT_ID, info }));
 
   const response = {
