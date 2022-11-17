@@ -40,11 +40,11 @@ exports.handler = async (event) => {
     "JOB_ID",
     PAYOUT_ID
   );
-  console.log(info);
+  console.log(JSON.stringify({ PAYOUT_ID, info }));
 
   const response = {
     statusCode: 200,
-    body: JSON.stringify("Hello " + body.name),
+    body: JSON.stringify("Webhook received" + PAYOUT_ID),
   };
   return response;
 };
