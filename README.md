@@ -56,12 +56,20 @@ The software as a service (SAAS) we created will solve the issue of lack of tran
 1. Clone the repo
 2. Install the dependencies.
 3. Create `.env` file and use your values for **ETH_URL** & **DATABASE_URL**. Run chainlink node using the command `npm run chainlink-node`.
-4. Open this link in browser http://localhost:6688 and login use=ing your creds which you gave earlier while starting the node.
+4. Open this link in browser http://localhost:6688 and login useing your creds which you gave earlier while starting the node.
 5. Deploy the Oracle Contract and make the node address as authorised.
 6. Run the external adapter using command `npm start`.
 7. Create a bridge with the adapter url.
 8. Create a job using the bridge name we created earlier and the oracle contract address. You can use `./job-spec/job.toml` file for creating job.
 9. Deploy Consumer Contract.
+
+**Note:** You can use following commands to compile and deploy the project from local using hardhat. Or you can do it from Remix IDE.
+
+```
+    npm run hardhat
+    npm run hardhat:compile
+    npm run hardhat:deploy
+```
 
 <br>
 
