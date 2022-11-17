@@ -23,17 +23,25 @@ The software as a service (SAAS) we created will solve the issue of lack of tran
 
 <br>
 
-1. Frontend: We used React JS, Tailwind CSS for UI and ethers library to fetch details from contract.
-2. External Adapter: We used Nodejs server and Paypal-sdk for fetching payment details from paypal.
-3. Block Chain :
-   1. Smart Contract: We used solidity for writing smart contracts
-   2. Development: Remix to write, compile in local system
-   3. Deployment: Hardhat to deploy to testnet and verify the contract
-   4. Chain: Polygon Mumbai to deploy smart contracts on testnet
+1. Frontend: We used **React JS**, Tailwind CSS for UI and **ethers** library to fetch details from contract.
+
+2. External Adapter: We used **Nodejs** server and **Paypal-sdk** for fetching payment details from paypal.
+
+3. Blockchain :
+
+   1. Smart Contract: We used **Solidity** for writing smart contracts.
+   2. Development: **Remix** to write, compile in local system.
+   3. Deployment: **Hardhat** to deploy to testnet and verify the contract.
+   4. Chain: **Polygon Mumbai** to deploy smart contracts on testnet.
+   5. RPC URL : We used **Quick Node** polygon RPC url to connect to the mumbai chain.
+
 4. Chainlink:
-   1. Oracle:
-   2. Bridge:
-   3. Job:
+
+   1. Oracle: We used Operator.sol for Oracle requests.
+   2. Bridge: We used Bridge for connecting external adapter to the chainlink job.
+   3. Job: Used to get data from external adapter and pass it to oracle.
+
+5. Others: We used **Paypal** for transactions, **aws lambda** function as a webhook url for paypal.
 
 # Architecture
 
@@ -43,23 +51,21 @@ The software as a service (SAAS) we created will solve the issue of lack of tran
 
 <br>
 
-# Challenges
-
-##
-
 ## Steps to Run the Project
 
 1. Clone the repo
-2. Install the dependencies
-3. Run both frontend
-4. Start chainlink node
-5. Deploy Oracle and make the node address as authorised
-6. Run the adapter locally
-7. Create a bridge with the adapter link
-8. Create a job using the bridge name we created earlier, oracle contract address
-9. Deploy Contract and Use JobId, Payout id, oracle address to execute the function
+2. Install the dependencies.
+3. Create `.env` file and use your values for **ETH_URL** & **DATABASE_URL**. Run chainlink node using the command `npm run chainlink-node`.
+4. Open this link in browser http://localhost:6688 and login use=ing your creds which you gave earlier while starting the node.
+5. Deploy the Oracle Contract and make the node address as authorised.
+6. Run the external adapter using command `npm start`.
+7. Create a bridge with the adapter url.
+8. Create a job using the bridge name we created earlier and the oracle contract address. You can use `./job-spec/job.toml` file for creating job.
+9. Deploy Consumer Contract.
 
-## Our Team
+<br>
+
+## Meet Our Team
 
 <div style="display: flex; justify-content: space-between; align-items: center;">
    <p style="flex:1">Shiva Kumar: </p>
