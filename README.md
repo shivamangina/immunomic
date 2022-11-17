@@ -1,5 +1,12 @@
 # Chainlink Fall 2022 Hackathon
 
+<br>
+
+<img src="./images/title.png" />
+
+<br>
+<br>
+
 ## Problem
 
 Often people who contribute/donate to campaigns run on these platforms are unaware of how the funds are being used: who are the exact people who have access to the funds, and where they are spending the money?
@@ -9,6 +16,12 @@ Often people who contribute/donate to campaigns run on these platforms are unawa
 The software as a service (SAAS) we created will solve the issue of lack of transparency in crowdfunding platforms. Our solution connects the bank accounts of the campaigns being run to a chainlink node, which writes all the bank transactions on an immutable ledger (blockchain), that in turn emits the transaction so that web2 nodes (on the crowd-funding platform) detect and record the transaction to display it to users of their platform.
 
 ## Stack We Used
+
+<br>
+
+<img src="./images/stack.png" />
+
+<br>
 
 1. Frontend: We used React JS, Tailwind CSS for UI and ethers library to fetch details from contract.
 2. External Adapter: We used Nodejs server and Paypal-sdk for fetching payment details from paypal.
@@ -24,7 +37,11 @@ The software as a service (SAAS) we created will solve the issue of lack of tran
 
 # Architecture
 
-###picture here##
+<br>
+
+<img src="./images/architecture.png" />
+
+<br>
 
 # Challenges
 
@@ -45,7 +62,7 @@ The software as a service (SAAS) we created will solve the issue of lack of tran
 ## Our Team
 
 <div style="display: flex; justify-content: space-between; align-items: center;">
-   <p style="flex:1">Shiva Kumar</p>
+   <p style="flex:1">Shiva Kumar: </p>
    <div style="flex:4; justify-content: space-between;">
       <a href="https://www.linkedin.com/in/satyasandeep" target="_blank">
       <img src=https://img.shields.io/badge/linkedin-%2300acee.svg?color=405DE6&style=for-the-badge&logo=linkedin&logoColor=white alt=linkedin style="margin-bottom: 5px;" />
@@ -63,7 +80,7 @@ The software as a service (SAAS) we created will solve the issue of lack of tran
 </div>
 
 <div style="display: flex; justify-content: space-between; align-items: center;">
-   <p style="flex:1">Sandeep Kumar</p>
+   <p style="flex:1">Sandeep Kumar: </p>
    <div style="flex:4; justify-content: space-between;">
       <a href="https://www.linkedin.com/in/satyasandeep" target="_blank">
       <img src=https://img.shields.io/badge/linkedin-%2300acee.svg?color=405DE6&style=for-the-badge&logo=linkedin&logoColor=white alt=linkedin style="margin-bottom: 5px;" />
@@ -81,7 +98,7 @@ The software as a service (SAAS) we created will solve the issue of lack of tran
 </div>
 
 <div style="display: flex; justify-content: space-between; align-items: center;">
-   <p style="flex:1">Ahmed Abusalama</p>
+   <p style="flex:1">Ahmed Abusalama: </p>
    <div style="flex:4; justify-content: space-between;">
       <a href="https://www.linkedin.com/in/satyasandeep" target="_blank">
       <img src=https://img.shields.io/badge/linkedin-%2300acee.svg?color=405DE6&style=for-the-badge&logo=linkedin&logoColor=white alt=linkedin style="margin-bottom: 5px;" />
@@ -98,7 +115,7 @@ The software as a service (SAAS) we created will solve the issue of lack of tran
    </div>
 </div>
 <div style="display: flex; justify-content: space-between; align-items: center;">
-   <p style="flex:1">Minhaj Al Abidin</p>
+   <p style="flex:1">Minhaj Al Abidin: </p>
    <div style="flex:4; justify-content: space-between;">
       <a href="https://www.linkedin.com/in/satyasandeep" target="_blank">
       <img src=https://img.shields.io/badge/linkedin-%2300acee.svg?color=405DE6&style=for-the-badge&logo=linkedin&logoColor=white alt=linkedin style="margin-bottom: 5px;" />
@@ -115,7 +132,7 @@ The software as a service (SAAS) we created will solve the issue of lack of tran
    </div>
 </div>
 <div style="display: flex; justify-content: space-between; align-items: center;">
-   <p style="flex:1">Abdullah Zaman</p>
+   <p style="flex:1">Abdullah Zaman: </p>
    <div style="flex:4; justify-content: space-between;">
       <a href="https://www.linkedin.com/in/satyasandeep" target="_blank">
       <img src=https://img.shields.io/badge/linkedin-%2300acee.svg?color=405DE6&style=for-the-badge&logo=linkedin&logoColor=white alt=linkedin style="margin-bottom: 5px;" />
