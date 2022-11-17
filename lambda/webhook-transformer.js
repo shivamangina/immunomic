@@ -2,6 +2,8 @@ const ethers = require("ethers");
 exports.handler = async (event) => {
   const body = JSON.parse(event.body);
 
+  const PAYOUT_ID = body.resource.batch_header.payout_batch_id;
+
   const contractAddress = "0xABCEC3684E4b606c1E66d80c6a3d70dAeFdbF215";
   const abi = [
     {
@@ -36,7 +38,7 @@ exports.handler = async (event) => {
   const info = await contract.functions.requestInfo(
     "ORACLE_ADDRESS",
     "JOB_ID",
-    "PAYOUT_ID"
+    PAYOUT_ID
   );
   console.log(info);
 
