@@ -9,11 +9,18 @@
 
 ## Problem
 
-Often people who contribute/donate to campaigns run on these platforms are unaware of how the funds are being used: who are the exact people who have access to the funds, and where they are spending the money?
+`Financial statement manipulation` is a type of accounting fraud that remains an ongoing problem.
+
+The manipulation of financial statements to commit fraud against investors or skirt regulation is a real and ongoing problem, costing billions of dollars annually.
+
+Managers/Organisations may "cook the books" in order to qualify for certain advantages that rely on certain financial performance metrics being met or 
+
+Crowdfunding platforms raise funds for campaigns and may underreport them to users by diverting the funds.
+
+Often people who contribute/donate to campaigns run on crowdfunding platforms are unaware of how the funds are being used: who are the exact people who have access to the funds, and where they are spending the money?
 
 ## Solution
-
-The software as a service (SAAS) we created will solve the issue of lack of transparency in crowdfunding platforms. Our solution connects the bank accounts of the campaigns being run to a chainlink node, which writes all the bank transactions on an immutable ledger (blockchain), that in turn emits the transaction so that web2 nodes (on the crowd-funding platform) detect and record the transaction to display it to users of their platform.
+` immunomic ` is a DAO we created to solve the issue of lack of transparency and trust in crowdfunding platforms. Our solution connects the bank accounts of the campaigns being run to a chainlink node, which writes all the bank transactions on an immutable ledger (blockchain), that in turn emits the transaction so that web2 app  detects and records the transaction to display it to users on Dashboard.
 
 Github Repos :
 
@@ -105,6 +112,8 @@ npm start
     npm run hardhat:compile
     npm run hardhat:deploy
 ```
+10. Deploy AWS lambda function and connect with API Gateway and get the `URL`
+11. Add `URL` as a webhook in PP/ or Any bank.
 
 <br>
 
