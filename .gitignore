@@ -2,6 +2,8 @@
 node_modules
 lambda/node_modules
 lambda/package-lock.json
+lambda/deploy.zip
+
 .env
 coverage
 coverage.json
@@ -12,3 +14,4 @@ typechain-types
 cache
 artifacts
 
+.DS_Store
