@@ -42,7 +42,7 @@ contract ImmutableLedger is Owner {
         uint256 _amount,
         string memory _transactionId,
         string memory _currency,
-        string _paymentTime,
+        string memory _paymentTime,
         string memory _accountId,
         string memory _eventName,
         string memory _organisationId

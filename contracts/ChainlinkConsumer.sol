@@ -52,7 +52,7 @@ contract ChainlinkConsumer is ChainlinkClient, ConfirmedOwner, ImmutableLedger {
         uint256 _amount,
         string memory _transactionId,
         string memory _currency,
-        uint256 _paymentTime,
+        string memory _paymentTime,
         string memory _accountId,
         string memory _eventName,
         string memory _organisationId
