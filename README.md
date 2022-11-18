@@ -95,14 +95,30 @@ nodepassword = node_W6kBJRaoY.Voa_.@3pX*3mf
 4. Open this link in browser http://localhost:6688 and login useing your creds which you gave earlier while starting the node.
 
 5. Deploy the Oracle Contract and make the node address as authorised.
+```
+Link address(polygon mumbai) 0x326C977E6efc84E512bB9C30f76E30c160eD06FB
+
+#Our Oracle is deployed here
+   0x681Eb7596991A0659b085b235940a88e1DBa9A9E
+
+
+```
 
 6. Run the external adapter using command .
 ```
 npm start
 ```
 7. Create a bridge with the adapter url.
+```
+Name: paypal-bridge
+
+URL:http://host.docker.internal:8000
+```
 8. Create a job using the bridge name we created earlier and the oracle contract address. You can use `./job-spec/job.toml` file for creating job.
 9. Deploy Consumer Contract.
+```
+ Our Deployed contract: 0x7abE2227ea7110AdB490aC3Db334b247Be1f489F
+```
 
 
 **Note:** You can use following commands to compile and deploy the project from local using hardhat. Or you can do it from Remix IDE.

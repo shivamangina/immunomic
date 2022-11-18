@@ -3,7 +3,7 @@ const ethers = require("ethers");
 exports.handler = async (event) => {
   console.log(JSON.stringify(event));
   
-  const body = event;
+  const body = JSON.parse(event.body);
 
   const PAYOUT_ID = body.resource.batch_header.payout_batch_id;
   const ORACLE_ADDRESS = "Oracle address here";
