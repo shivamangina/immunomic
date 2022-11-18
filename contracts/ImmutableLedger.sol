@@ -12,7 +12,7 @@ contract ImmutableLedger is Owner {
         uint256 amount;
         string transactionId;
         string currency;
-        string paymentTime; //
+        string paymentTime;
         string accountId;
         string eventName;
         string organisationId;
@@ -31,17 +31,7 @@ contract ImmutableLedger is Owner {
     mapping(string => Organisation) public organisations;
 
     event TransactionAdded(
-        bytes32 indexed requestId,
-        string _paymentMethod,
-        string _to,
-        string indexed _from,
-        uint256 _amount,
-        string _transactionId,
-        string _currency,
-        string _paymentTime,
-        string _accountId,
-        string _eventName,
-        string _organisationId
+        Transaction transaction
     );
 
     function addTransaction(
@@ -74,21 +64,23 @@ contract ImmutableLedger is Owner {
         );
 
         emit TransactionAdded(
-            _requestId,
-            _paymentMethod,
-            _to,
-            _from,
-            _amount,
-            _transactionId,
-            _currency,
-            _paymentTime,
-            _accountId,
-            _eventName,
-            _organisationId
+           Transaction(
+                _requestId,
+                _paymentMethod,
+                _to,
+                _from,
+                _amount,
+                _transactionId,
+                _currency,
+                _paymentTime,
+                _accountId,
+                _eventName,
+                _organisationId
+            )
         );
     }
 
-    function getAllTrasactions() public view returns (Transaction[] memory) {
+    function getAllTransactions() public view returns (Transaction[] memory) {
         return transactions;
     }
 
